@@ -3,6 +3,7 @@
 @section('content')
     <div class="col-lg-8 col-md-10 mx-auto">
         <div class="post-preview">
+            {{$post->getFirstMedia()}}
             <a href="#">
                 <h2 class="post-title">
                     {{$post->title}}

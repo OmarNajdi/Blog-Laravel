@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Post;
 use Illuminate\Http\Request;
 
-use Carbon\Carbon;
-
 class PostsController extends Controller
 {
 
@@ -45,10 +43,13 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-
         $this->validate($request, ['title' => 'required', 'body' => 'required|min:3']);
 
-        Post::create(request(['title', 'body']));
+        $post = Post::create(request(['title', 'body']));
+
+
+        $post->addMedia($request->file)->toMediaCollection();
+
 
         return redirect('/');
     }
