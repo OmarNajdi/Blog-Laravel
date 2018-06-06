@@ -10,5 +10,11 @@
     <p class="post-meta">
         Published at {{ $post->created_at->format('d/m/Y')}}
     </p>
+
+    @php
+        if (\Illuminate\Support\Facades\Auth::user()->can('delete', \App\Post::class)) {
+            echo "<p><a href=/delete/$post->id>Delete post</a></p>";
+        }
+    @endphp
 </div>
 <hr>
